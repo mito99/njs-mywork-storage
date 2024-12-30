@@ -1,0 +1,16 @@
+services:
+  surrealdb:
+    image: surrealdb/surrealdb:v2.1.4
+    container_name: surrealdb
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./volumes/surrealdb/dbdata:/dbdata
+    env_file:
+      - .env
+    command:
+      - start
+      - --log=trace
+      - --user=${DB_USER}
+      - --pass=${DB_PASSWORD}
+      - file:///dbdata/database.db
