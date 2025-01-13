@@ -22,6 +22,10 @@ DEFINE FIELD sender ON mail_messages TYPE string ASSERT $value != NONE;
 DEFINE TABLE mail_recipients SCHEMAFULL;
 DEFINE FIELD id ON mail_recipients TYPE string;
 DEFINE FIELD mail_message_id ON mail_recipients TYPE string ASSERT $value != NONE;
+DEFINE FIELD recipient_type ON mail_recipients
+  TYPE string
+  ASSERT $value IN ['to', 'cc']
+  VALUE $value OR NONE;
 DEFINE FIELD email ON mail_recipients TYPE string ASSERT $value != NONE;
 
 -- メール添付ファイルテーブルの定義
